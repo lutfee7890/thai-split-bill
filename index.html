@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คนละครึ่ง | ไทยช่วยไทย</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Prompt:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue:    #1a56db;
+    --blue-lt: #3b82f6;
+    --sky:     #0ea5e9;
+    --green:   #16a34a;
+    --red:     #dc2626;
+    --gold:    #d97706;
+    --gray-50:  #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --radius: 18px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+    --shadow:    0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: #ffffff;
+    color: var(--gray-900);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── subtle dot grid background ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.35;
+    pointer-events: none; z-index: 0;
+  }
+
+  .page {
+    position: relative; z-index: 1;
+    max-width: 430px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+  }
+
+  /* ════════════════════════════════
+     HERO
+  ════════════════════════════════ */
+  .hero {
+    background: linear-gradient(160deg, #1e40af 0%, #1a56db 45%, #0ea5e9 100%);
+    padding: 54px 20px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 220px; height: 220px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    left: -60px; bottom: -60px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .hero-gov {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 22px;
+    line-height: 1.5;
+  }
+
+  /* budget pills */
+  .budget-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .bpill {
+    flex: 1;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 14px;
+    padding: 12px 10px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+  }
+
+  .bpill-num {
+    font-family: 'Prompt', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .bpill-unit {
+    font-size: 9px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 3px;
+    line-height: 1.3;
+  }
+
+  .bpill-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+
+  .bpill-fill { height: 100%; border-radius: 2px; }
+  .bf-full    { width: 100%; background: rgba(255,255,255,0.7); }
+
+  /* ════════════════════════════════
+     COUNTDOWN CARDS
+  ════════════════════════════════ */
+  .section { padding: 0 16px; margin-top: 14px; }
+
+  .cd-pair { display: flex; flex-direction: column; gap: 10px; }
+
+  .cd-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+  }
+
+  .cd-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .cd-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  .cd-badge.month  { background: #dbeafe; color: #1d4ed8; }
+  .cd-badge.proj   { background: #d1fae5; color: #065f46; }
+
+  .cd-end {
+    font-size: 10px;
+    color: var(--gray-400);
+  }
+
+  .cd-boxes {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cd-box {
+    flex: 1;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 8px 4px;
+    text-align: center;
+  }
+
+  .cd-num {
+    font-family: 'Prompt', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gray-900);
+    display: block;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .cd-lbl {
+    font-size: 8px;
+    color: var(--gray-400);
+    margin-top: 3px;
+    display: block;
+  }
+
+  .cd-sep {
+    font-family: 'Prompt', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gray-200);
+    padding-bottom: 14px;
+    flex-shrink: 0;
+  }
+
+  .cd-note {
+    margin-top: 9px;
+    font-size: 10px;
+    color: var(--gray-400);
+    background: var(--gray-50);
+    border-radius: 8px;
+    padding: 7px 10px;
+    line-height: 1.6;
+    border-left: 3px solid #fbbf24;
+  }
+
+  /* progress bar */
+  .prog-wrap { margin-top: 10px; }
+
+  .prog-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+  }
+
+  .prog-track {
+    height: 5px;
+    background: var(--gray-100);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .prog-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--sky));
+    transition: width 1s ease;
+  }
+
+  /* ════════════════════════════════
+     SECTION HEADER
+  ════════════════════════════════ */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .sec-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  .sec-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #dbeafe;
+    color: var(--blue);
+  }
+
+  /* ════════════════════════════════
+     TABS
+  ════════════════════════════════ */
+  .tabs {
+    display: flex;
+    gap: 0;
+    background: var(--gray-100);
+    border-radius: 12px;
+    padding: 3px;
+    margin-bottom: 12px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.22s;
+    background: transparent;
+    color: var(--gray-500);
+  }
+
+  .tab-btn.active {
+    background: #fff;
+    color: var(--blue);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ════════════════════════════════
+     INPUT CARD
+  ════════════════════════════════ */
+  .input-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+  }
+
+  .input-label {
+    font-size: 12px;
+    color: var(--gray-500);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .input-row {
+    display: flex;
+    align-items: center;
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .input-row:focus-within {
+    border-color: var(--blue-lt);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(59,130,246,0.1);
+  }
+
+  .cur {
+    padding: 0 12px;
+    font-family: 'Prompt', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-400);
+    flex-shrink: 0;
+  }
+
+  input[type="number"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 15px 0;
+    font-family: 'Prompt', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gray-900);
+    outline: none;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type="number"]::placeholder { color: var(--gray-200); }
+
+  .input-unit {
+    padding: 0 14px;
+    font-size: 13px;
+    color: var(--gray-400);
+    flex-shrink: 0;
+  }
+
+  /* quick buttons */
+  .quick-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .quick-row::-webkit-scrollbar { display: none; }
+
+  .qbtn {
+    flex-shrink: 0;
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    color: var(--gray-700);
+    border-radius: 9px;
+    padding: 6px 13px;
+    font-size: 12px;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .qbtn:hover  { background: #dbeafe; border-color: #93c5fd; color: var(--blue); }
+  .qbtn:active { transform: scale(0.95); }
+  .qbtn.clr    { background: #fff1f2; border-color: #fecaca; color: var(--red); }
+  .qbtn.clr:hover { background: #fee2e2; }
+
+  /* calc button */
+  .calc-btn {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 16px;
+    background: linear-gradient(135deg, #1e40af, #1a56db);
+    border: none;
+    border-radius: 13px;
+    color: #fff;
+    font-family: 'Prompt', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 16px rgba(26,86,219,0.35);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calc-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  }
+
+  .calc-btn:hover  { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,86,219,0.45); }
+  .calc-btn:active { transform: scale(0.98); }
+
+  /* ════════════════════════════════
+     SPLIT BAR
+  ════════════════════════════════ */
+  .split-bar-wrap {
+    display: flex;
+    gap: 2px;
+    margin-top: 12px;
+    height: 6px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .seg-blue  { flex: 60; background: linear-gradient(90deg, #1e40af, #3b82f6); border-radius: 4px 0 0 4px; }
+  .seg-sky   { flex: 40; background: linear-gradient(90deg, #0ea5e9, #38bdf8); border-radius: 0 4px 4px 0; }
+
+  .split-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 10px;
+    color: var(--gray-400);
+  }
+
+  /* ════════════════════════════════
+     RESULT CARD
+  ════════════════════════════════ */
+  .result-card {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+    margin-top: 12px;
+  }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .result-row:last-child { border-bottom: none; }
+
+  .result-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+
+  .rdot { width: 8px; height: 8px; border-radius: 50%; }
+  .rdot-blue { background: #1e40af; }
+  .rdot-sky  { background: #0ea5e9; }
+
+  .result-val {
+    font-family: 'Prompt', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--gray-900);
+  }
+
+  .result-u { font-size: 11px; color: var(--gray-400); }
+
+  .result-row.total {
+    background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+    border-top: 1.5px solid #bfdbfe;
+    padding: 16px 18px;
+  }
+
+  .total-lbl { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+
+  .total-val {
+    font-family: 'Prompt', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--blue);
+  }
+
+  .data-note {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--gray-400);
+    text-align: center;
+  }
+
+  /* ════════════════════════════════
+     SAVE BUTTON
+  ════════════════════════════════ */
+  .save-btn {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 15px;
+    background: #fff;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 13px;
+    color: var(--gray-700);
+    font-family: 'Prompt', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .save-btn:hover { background: var(--gray-50); border-color: var(--blue-lt); color: var(--blue); }
+  .save-btn:active { transform: scale(0.98); }
+
+  /* ════════════════════════════════
+     HISTORY
+  ════════════════════════════════ */
+  .hist-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .hist-clr {
+    background: none;
+    border: 1.5px solid #fecaca;
+    color: var(--red);
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .hist-clr:hover { background: #fff1f2; }
+
+  .hist-item {
+    background: #fff;
+    border: 1px solid var(--gray-100);
+    border-radius: 14px;
+    padding: 13px 15px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    animation: slideUp 0.25s ease;
+  }
+
+  @keyframes slideUp {
+    from { opacity:0; transform:translateY(8px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .hist-date  { font-size: 10px; color: var(--gray-400); margin-bottom: 3px; }
+  .hist-total { font-family:'Prompt',sans-serif; font-size:17px; font-weight:800; color:var(--gray-900); }
+  .hist-mine  { font-family:'Prompt',sans-serif; font-size:16px; font-weight:800; color:var(--blue); text-align:right; }
+  .hist-sub   { font-size:10px; color:var(--gray-400); margin-top:2px; text-align:right; }
+  .hist-del   { background:none; border:none; color:#fca5a5; font-size:16px; cursor:pointer; padding:4px 6px; margin-left:6px; transition:color 0.2s; }
+  .hist-del:hover { color:var(--red); }
+
+  .empty-hist {
+    text-align:center; padding:30px 20px;
+    color:var(--gray-400); font-size:13px;
+  }
+  .empty-icon { font-size:32px; margin-bottom:10px; opacity:0.5; display:block; }
+
+  /* ════════════════════════════════
+     ELIGIBILITY
+  ════════════════════════════════ */
+  .elig-card {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+  }
+
+  .elig-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 18px 10px;
+    color: var(--gray-900);
+    border-bottom: 1px solid var(--gray-100);
+    background: var(--gray-50);
+  }
+
+  .elig-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 11px 18px;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 13px;
+    color: var(--gray-700);
+    line-height: 1.5;
+  }
+  .elig-item:last-child { border-bottom: none; }
+
+  .eicon { font-size: 15px; flex-shrink:0; margin-top:1px; }
+
+  /* ════════════════════════════════
+     FOOTER
+  ════════════════════════════════ */
+  .footer {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: var(--gray-50);
+    border-radius: 14px;
+    border: 1px solid var(--gray-200);
+    font-size: 10px;
+    color: var(--gray-400);
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  /* ════════════════════════════════
+     TOAST
+  ════════════════════════════════ */
+  .toast {
+    position: fixed;
+    bottom: 100px; left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--gray-900);
+    color: #fff;
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    opacity: 0; pointer-events: none;
+    transition: all 0.28s;
+    z-index: 100;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  }
+  .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* ════════════════════════════════
+     BOTTOM NAV
+  ════════════════════════════════ */
+  .bottom-nav {
+    position: fixed; bottom:0; left:50%;
+    transform: translateX(-50%);
+    width:100%; max-width:430px;
+    background: rgba(255,255,255,0.92);
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 10;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .nav-btn {
+    flex:1; padding:10px 0 13px;
+    background:none; border:none;
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    cursor:pointer; color:var(--gray-400);
+    font-family:'Sarabun',sans-serif; font-size:10px; font-weight:600;
+    transition: color 0.2s;
+  }
+  .nav-btn.active { color:var(--blue); }
+  .nav-icon { font-size:22px; }
+
+  /* divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 18px 0 14px;
+  }
+  .divider-line { flex:1; height:1px; background:var(--gray-200); }
+  .divider-txt  { font-size:11px; color:var(--gray-400); font-weight:600; white-space:nowrap; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ════ HERO ════ -->
+  <div class="hero">
+    <div class="hero-gov">🇹🇭 โครงการรัฐบาล · มิ.ย. – ก.ย. 2569</div>
+    <div class="hero-title">คนละครึ่ง</div>
+    <div class="hero-desc">รัฐช่วยจ่าย 60% · คุณจ่ายแค่ 40%<br>สูงสุด 1,000 บาท/เดือน</div>
+    <div class="budget-row">
+      <div class="bpill">
+        <div class="bpill-num">4,000</div>
+        <div class="bpill-unit">บาท<br>ตลอดโครงการ</div>
+        <div class="bpill-bar"><div class="bpill-fill bf-full"></div></div>
+      </div>
+      <div class="bpill">
+        <div class="bpill-num">1,000</div>
+        <div class="bpill-unit">บาท<br>/ เดือน</div>
+        <div class="bpill-bar"><div class="bpill-fill bf-full"></div></div>
+      </div>
+      <div class="bpill">
+        <div class="bpill-num">200</div>
+        <div class="bpill-unit">บาท<br>/ วัน (สูงสุด)</div>
+        <div class="bpill-bar"><div class="bpill-fill bf-full"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ COUNTDOWNS ════ -->
+  <div class="section">
+    <div class="cd-pair">
+
+      <!-- เดือน -->
+      <div class="cd-card">
+        <div class="cd-head">
+          <span class="cd-badge month">📅 หมดสิทธิ์เดือน<span id="monthName">มิถุนายน</span></span>
+          <span class="cd-end">เหลืออีก</span>
+        </div>
+        <div class="cd-boxes">
+          <div class="cd-box"><span class="cd-num" id="m-d">--</span><span class="cd-lbl">วัน</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><span class="cd-num" id="m-h">--</span><span class="cd-lbl">ชม.</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><span class="cd-num" id="m-m">--</span><span class="cd-lbl">นาที</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><span class="cd-num" id="m-s">--</span><span class="cd-lbl">วินาที</span></div>
+        </div>
+        <div class="cd-note">⚠️ สิทธิ์รายเดือนไม่สะสมข้ามเดือน — ใช้ให้หมดก่อนสิ้นเดือน</div>
+      </div>
+
+      <!-- โครงการ -->
+      <div class="cd-card">
+        <div class="cd-head">
+          <span class="cd-badge proj">🏁 โครงการสิ้นสุด 30 ก.ย. 2569</span>
+          <span class="cd-end">เหลืออีก</span>
+        </div>
+        <div class="cd-boxes">
+          <div class="cd-box"><span class="cd-num" id="p-d">--</span><span class="cd-lbl">วัน</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><span class="cd-num" id="p-h">--</span><span class="cd-lbl">ชม.</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><span class="cd-num" id="p-m">--</span><span class="cd-lbl">นาที</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><span class="cd-num" id="p-s">--</span><span class="cd-lbl">วินาที</span></div>
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-labels">
+            <span>1 มิ.ย. 69</span>
+            <span id="pct-txt">0%</span>
+          </div>
+          <div class="prog-track">
+            <div class="prog-fill" id="progFill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════ CALCULATOR ════ -->
+  <div class="section">
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-txt">🧮 คำนวณสิทธิ์</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('total',this)">ยอดรวมทั้งหมด</button>
+      <button class="tab-btn" onclick="switchTab('mine',this)">งบของเรา</button>
+    </div>
+
+    <!-- Tab: total -->
+    <div class="tab-content active" id="tab-total">
+      <div class="input-card">
+        <div class="input-label">มูลค่าสินค้าหรือบริการ (บาท)</div>
+        <div class="input-row">
+          <span class="cur">฿</span>
+          <input type="number" id="totalInput" placeholder="0" min="0" step="10"/>
+          <span class="input-unit">บาท</span>
+        </div>
+        <div class="quick-row" id="q-total"></div>
+        <button class="calc-btn" onclick="calcFromTotal()">คำนวณ →</button>
+      </div>
+    </div>
+
+    <!-- Tab: mine -->
+    <div class="tab-content" id="tab-mine">
+      <div class="input-card">
+        <div class="input-label">งบของเรา — จ่ายแค่ 40%</div>
+        <div class="input-row">
+          <span class="cur">฿</span>
+          <input type="number" id="mineInput" placeholder="0" min="0" step="10"/>
+          <span class="input-unit">บาท</span>
+        </div>
+        <div class="quick-row" id="q-mine"></div>
+        <button class="calc-btn" onclick="calcFromMine()">คำนวณ →</button>
+      </div>
+    </div>
+
+    <!-- split bar -->
+    <div class="split-bar-wrap">
+      <div class="seg-blue"></div>
+      <div class="seg-sky"></div>
+    </div>
+    <div class="split-labels">
+      <span>🔵 รัฐช่วย 60%</span>
+      <span>🩵 เราจ่าย 40%</span>
+    </div>
+
+    <!-- result -->
+    <div class="result-card">
+      <div class="result-row">
+        <div class="result-label">
+          <div class="rdot rdot-blue"></div>รัฐช่วยจ่าย (60%)
+        </div>
+        <div><span class="result-val" id="r1">0</span><span class="result-u"> บาท</span></div>
+      </div>
+      <div class="result-row">
+        <div class="result-label">
+          <div class="rdot rdot-sky"></div>เราจ่าย (40%)
+        </div>
+        <div><span class="result-val" id="r2">0</span><span class="result-u"> บาท</span></div>
+      </div>
+      <div class="result-row total">
+        <span class="total-lbl">รวมทั้งสิ้น</span>
+        <div><span class="total-val" id="rTotal">0</span><span class="result-u"> บาท</span></div>
+      </div>
+    </div>
+
+    <div class="data-note">🔒 ข้อมูลบันทึกในเครื่องของคุณเท่านั้น · ไม่มีการส่งออก</div>
+
+    <!-- save -->
+    <button class="save-btn" onclick="saveHist()">💾 บันทึกรายการนี้</button>
+  </div>
+
+  <!-- ════ HISTORY ════ -->
+  <div class="section">
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-txt">📋 ประวัติรายการ</div>
+      <div class="divider-line"></div>
+    </div>
+    <div class="hist-head">
+      <div class="sec-title" style="font-size:14px;color:var(--gray-500)">รายการของคุณ</div>
+      <button class="hist-clr" onclick="clearHist()">ล้างทั้งหมด</button>
+    </div>
+    <div id="histList"></div>
+  </div>
+
+  <!-- ════ ELIGIBILITY ════ -->
+  <div class="section">
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-txt">🧾 คุณสมบัติผู้เข้าร่วม</div>
+      <div class="divider-line"></div>
+    </div>
+    <div class="elig-card">
+      <div class="elig-title">ตรวจสอบก่อนลงทะเบียนผ่านแอปฯ เป๋าตัง</div>
+      <div class="elig-item"><span class="eicon">✅</span>มีสัญชาติไทย</div>
+      <div class="elig-item"><span class="eicon">✅</span>อายุ 18 ปีบริบูรณ์ขึ้นไป ณ วันลงทะเบียน</div>
+      <div class="elig-item"><span class="eicon">✅</span>มีบัตรประจำตัวประชาชน</div>
+      <div class="elig-item"><span class="eicon">❌</span>ไม่เป็นผู้ถือบัตรสวัสดิการแห่งรัฐ (ณ 18 พ.ค. 2569)</div>
+      <div class="elig-item"><span class="eicon">❌</span>ไม่ถูก สศค. ระงับสิทธิ์หรือถูกเรียกเงินคืน</div>
+    </div>
+  </div>
+
+  <!-- ════ FOOTER ════ -->
+  <div class="section">
+    <div class="footer">
+      ข้อมูลอ้างอิงจากโครงการไทยช่วยไทย พลัส (60/40) โดยกระทรวงการคลัง<br>
+      เครื่องมือช่วยคำนวณ · ไม่ใช่เว็บไซต์ทางการของรัฐบาล
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- Bottom Nav -->
+<div class="bottom-nav">
+  <button class="nav-btn active"><span class="nav-icon">🧮</span>คำนวณ</button>
+  <button class="nav-btn" onclick="document.getElementById('histList').scrollIntoView({behavior:'smooth'})"><span class="nav-icon">📋</span>ประวัติ</button>
+  <button class="nav-btn" onclick="resetAll()"><span class="nav-icon">🔄</span>รีเซ็ต</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── Quick buttons 10–200 ──
+  function buildQ(wrapId, inputId) {
+    const w = document.getElementById(wrapId);
+    for (let v = 10; v <= 200; v += 10) {
+      const b = document.createElement('button');
+      b.className = 'qbtn';
+      b.textContent = '+' + v;
+      b.onclick = () => { document.getElementById(inputId).value = (parseFloat(document.getElementById(inputId).value)||0) + v; };
+      w.appendChild(b);
+    }
+    const c = document.createElement('button');
+    c.className = 'qbtn clr'; c.textContent = 'ล้าง';
+    c.onclick = () => { document.getElementById(inputId).value = ''; resetResult(); };
+    w.appendChild(c);
+  }
+  buildQ('q-total','totalInput');
+  buildQ('q-mine','mineInput');
+
+  // ── Countdown ──
+  const END_PROJ = new Date('2026-09-30T23:59:59+07:00');
+  const MONTH_TH = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+  const START = new Date('2026-06-01T00:00:00+07:00');
+
+  const pad = n => String(n).padStart(2,'0');
+
+  function parts(ms) {
+    if (ms <= 0) return [0,0,0,0];
+    return [Math.floor(ms/86400000), Math.floor((ms%86400000)/3600000), Math.floor((ms%3600000)/60000), Math.floor((ms%60000)/1000)];
+  }
+
+  function tick() {
+    const now = new Date();
+    document.getElementById('monthName').textContent = MONTH_TH[now.getMonth()];
+
+    const mEnd = new Date(now.getFullYear(), now.getMonth()+1, 0, 23, 59, 59);
+    const [md,mh,mm,ms] = parts(mEnd - now);
+    document.getElementById('m-d').textContent = pad(md);
+    document.getElementById('m-h').textContent = pad(mh);
+    document.getElementById('m-m').textContent = pad(mm);
+    document.getElementById('m-s').textContent = pad(ms);
+
+    const [pd,ph,pm,ps] = parts(END_PROJ - now);
+    document.getElementById('p-d').textContent = pad(pd);
+    document.getElementById('p-h').textContent = pad(ph);
+    document.getElementById('p-m').textContent = pad(pm);
+    document.getElementById('p-s').textContent = pad(ps);
+
+    const pct = Math.max(0, Math.min(100, ((now - START)/(END_PROJ - START))*100));
+    document.getElementById('progFill').style.width = pct.toFixed(1)+'%';
+    document.getElementById('pct-txt').textContent = pct.toFixed(1)+'%';
+  }
+  tick(); setInterval(tick, 1000);
+
+  // ── Calc ──
+  function fmt(n) { return n%1===0 ? n.toLocaleString('th-TH') : n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function setResult(total, mine, gov) {
+    document.getElementById('r1').textContent = fmt(gov);
+    document.getElementById('r2').textContent = fmt(mine);
+    document.getElementById('rTotal').textContent = fmt(total);
+  }
+
+  function resetResult() { ['r1','r2','rTotal'].forEach(id => document.getElementById(id).textContent='0'); }
+
+  function calcFromTotal() {
+    const v = parseFloat(document.getElementById('totalInput').value)||0;
+    setResult(v, v*0.4, v*0.6);
+  }
+
+  function calcFromMine() {
+    const v = parseFloat(document.getElementById('mineInput').value)||0;
+    const t = v/0.4;
+    setResult(t, v, t*0.6);
+  }
+
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+tab).classList.add('active');
+    resetResult();
+  }
+
+  function resetAll() {
+    ['totalInput','mineInput'].forEach(id => document.getElementById(id).value='');
+    resetResult();
+    showToast('รีเซ็ตแล้ว ✓');
+  }
+
+  // ── History ──
+  let hist = JSON.parse(localStorage.getItem('tctt_v2')||'[]');
+
+  function saveHist() {
+    const t = parseFloat(document.getElementById('rTotal').textContent.replace(/,/g,''))||0;
+    if (!t) { showToast('กรอกยอดเงินก่อนนะ ❗'); return; }
+    const m = parseFloat(document.getElementById('r2').textContent.replace(/,/g,''))||0;
+    const now = new Date();
+    const date = now.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+    hist.unshift({date, total:t, mine:m});
+    localStorage.setItem('tctt_v2',JSON.stringify(hist));
+    renderHist(); showToast('บันทึกแล้ว ✓');
+  }
+
+  function renderHist() {
+    const el = document.getElementById('histList');
+    if (!hist.length) {
+      el.innerHTML = `<div class="empty-hist"><span class="empty-icon">📂</span>ยังไม่มีรายการ<br>กรอกยอดและกดบันทึกด้านบน</div>`;
+      return;
+    }
+    el.innerHTML = hist.map((h,i)=>`
+      <div class="hist-item">
+        <div>
+          <div class="hist-date">📅 ${h.date}</div>
+          <div class="hist-total">฿${h.total.toLocaleString('th-TH',{minimumFractionDigits:2})}</div>
+        </div>
+        <div>
+          <div class="hist-mine">฿${h.mine.toLocaleString('th-TH',{minimumFractionDigits:2})}</div>
+          <div class="hist-sub">ส่วนของเรา (40%)</div>
+        </div>
+        <button class="hist-del" onclick="delHist(${i})">🗑</button>
+      </div>
+    `).join('');
+  }
+
+  function delHist(i) {
+    hist.splice(i,1);
+    localStorage.setItem('tctt_v2',JSON.stringify(hist));
+    renderHist(); showToast('ลบรายการแล้ว');
+  }
+
+  function clearHist() {
+    if (!hist.length) return;
+    hist=[]; localStorage.setItem('tctt_v2','[]');
+    renderHist(); showToast('ล้างประวัติแล้ว');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent=msg; t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2200);
+  }
+
+  renderHist();
+</script>
+</body>
+</html>
